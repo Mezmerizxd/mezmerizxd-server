@@ -22,26 +22,26 @@ services:
             - ./docker-data/mysql:/var/lib/mysql
         ports:
             - '3306:3306'
-    mongodb:
-        image: mongo:5.0
-        container_name: mongodb
-        restart: always
-        environment:
-            - MONGO_INITDB_ROOT_USERNAME=root
-            - MONGO_INITDB_ROOT_PASSWORD=root
-        volumes:
-            - ./docker-data/mongodb:/data/db
-        ports:
-            - '27017:27017'
-    another-express-boilerplate:
-        build:
-            context: .
-            dockerfile: local.Dockerfile
-        container_name: 'another-express-boilerplate'
-        volumes:
-            - .:/usr/src/app/
-        working_dir: /usr/src/app
-        command: sh -c "yarn install && yarn build && yarn dev"
-        ports:
-            - 3001:3001
-            - 5550:5550
+    # mongodb:
+    #     image: mongo:5.0
+    #     container_name: mongodb
+    #     restart: always
+    #     environment:
+    #         - MONGO_INITDB_ROOT_USERNAME=root
+    #         - MONGO_INITDB_ROOT_PASSWORD=root
+    #     volumes:
+    #         - ./docker-data/mongodb:/data/db
+    #     ports:
+    #         - '27017:27017'
+    # another-express-boilerplate:
+    #     build:
+    #         context: .
+    #         dockerfile: local.Dockerfile
+    #     container_name: 'another-express-boilerplate'
+    #     volumes:
+    #         - .:/usr/src/app/
+    #     working_dir: /usr/src/app
+    #     command: sh -c "yarn install && yarn build && yarn dev"
+    #     ports:
+    #         - 3001:3001
+    #         - 5550:5550
