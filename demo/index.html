@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Demo</title>
+    </head>
+    <body>
+        <p>This is a demo.</p>
+
+        <div class="test">
+            <p>Get data from the server.</p>
+            <button onclick="test_getData()">Get Data</button>
+            <div id="test_getData"></div>
+        </div>
+    </body>
+    <script type="module">
+        import { io } from 'https://cdn.socket.io/4.4.1/socket.io.esm.min.js';
+
+        const socket = io();
+    </script>
+    <script>
+        const test_getData = async () => {
+            let retData;
+            await fetch('/api/test', {
+                method: 'POST',
+                body: null,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    retData = data;
+                })
+                .catch((error) => console.error(error));
+
+            // send to page
+            document.getElementById('test_getData').innerHTML =
+                JSON.stringify(retData);
+        };
+    </script>
+</html>
